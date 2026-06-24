@@ -12,7 +12,8 @@ pista = Entity(
     shader=basic_lighting_shader,
     scale=2.5, 
     position=(0, -0.25, 15),
-    rotation_y=180
+    rotation_y=180,
+    color=color.salmon
 )
 
 chao = Entity(
@@ -20,7 +21,7 @@ chao = Entity(
     scale=(100, 1, 100), 
     shader=basic_lighting_shader,
     position=(0, -5, 0),
-    color=color.dark_gray
+    color=rgb(0.8, 0.8, 0.8, 1)
 )
 
 bola = Entity(
@@ -28,7 +29,8 @@ bola = Entity(
     scale=0.5, 
     shader=basic_lighting_shader,
     position=(0, 0.5, 2),
-    collider='sphere'
+    collider='sphere',
+    color=rgb(0.4, 0.4, 1.0, 1.0)
 )
 
 seta_pivo = Entity(position=(0, 0.5, 2)) 
@@ -201,5 +203,9 @@ def input(key):
 # Configuração da câmera
 camera.position = (0, 6, -12)
 camera.rotation_x = 15
+
+luz = DirectionalLight()
+luz.look_at(Vec3(-1, -10, -1))
+luz.color = color.white * 0.5 # Ajuste a intensidade para não estourar
 
 app.run()
