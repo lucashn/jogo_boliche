@@ -104,7 +104,7 @@ def update():
     # Oscilação periódica da seta antes do lançamento
     if not bola_lancada and not jogada_finalizada:
         # Usa a função Seno baseada no tempo para girar suavemente entre -25 e +25 graus
-        seta_pivo.rotation_y = math.sin(time.time() * 5) * 25
+        seta_pivo.rotation_y = math.sin(time.time() * 3) * 25
         
         if held_keys['space']:
             bola_lancada = True
@@ -123,6 +123,9 @@ def update():
     if bola_lancada and bola.enabled:
         bola.x += vel_x * time.dt
         bola.z += vel_z * time.dt
+
+        # Gira o eixo X baseado na velocidade atual (vel_z) multiplicada por um fator (ex: 20)
+        bola.rotation_x += vel_z * 20 * time.dt
         
         # Se a bola passar do limite de fundo da pista ou sair pelas laterais (valeta)
         if bola.z > 29 or abs(bola.x) > 3:
